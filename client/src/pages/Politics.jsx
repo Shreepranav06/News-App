@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { normalizeUrl } from "../utils/normalizeURL";
 const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 
 
@@ -93,10 +94,11 @@ const PoliticsPage = () => {
 
   const handleVote = async (index, type) => {
     const article = articles[index];
+    const articleUrl = normalizeUrl(articles[index].url);
     try {
       const res = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
         username,
-        newsUrl: article.url,
+        newsUrl: articleUrl,
         type: type === "up" ? "upvote" : "downvote",
       });
 
@@ -120,7 +122,7 @@ const PoliticsPage = () => {
       const res = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
 
           username,
-          newsUrl: articles[index].url,
+          newsUrl: normalizeUrl(articles[index].url),
           comment,
         }
       );

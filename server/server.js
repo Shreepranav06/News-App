@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
+const normalizeUrl = (url) => url?.trim().replace(/\/+$/, '');
+
 
 dotenv.config();
 
@@ -93,7 +95,9 @@ app.post('/api/interact/vote', async (req, res) => {
     }
 
     // Find the interaction for this news article
-    let interaction = user.interactions.find((i) => i.newsUrl === newsUrl);
+    const cleanUrl = normalizeUrl(newsUrl);
+    let interaction = user.interactions.find((i) => normalizeUrl(i.newsUrl) === cleanUrl);
+
 
     if (!interaction) {
       // If no interaction exists, create a new one
@@ -126,7 +130,9 @@ app.post('/api/interact/comment', async (req, res) => {
     }
 
     // Find the interaction for this news article
-    let interaction = user.interactions.find((i) => i.newsUrl === newsUrl);
+    const cleanUrl = normalizeUrl(newsUrl);
+    let interaction = user.interactions.find((i) => normalizeUrl(i.newsUrl) === cleanUrl);
+
 
     if (!interaction) {
       // If no interaction exists, create a new one
