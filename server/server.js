@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://frontend-service-5gzj.onrender.com/",
+  origin: "https://frontend-service-5gzj.onrender.com",
   credentials: true
 }));
 app.use(express.json());
