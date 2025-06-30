@@ -68,7 +68,7 @@ const PoliticsPage = () => {
   const fetchUserInteractions = async (newsList) => {
     if (!username) return;
     try {
-      const response = await axios.get(`${BACKEND_URL}/api/interact/${username}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/interact/${username}`);
 
       const interactions = response.data.interactions || [];
 
@@ -97,7 +97,7 @@ const PoliticsPage = () => {
     const article = articles[index];
     const articleUrl = normalizeUrl(articles[index].url);
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/interact/vote`, {
         username,
         newsUrl: articleUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -120,7 +120,7 @@ const PoliticsPage = () => {
     if (!comment) return;
 
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/interact/comment`, {
 
           username,
           newsUrl: normalizeUrl(articles[index].url),
