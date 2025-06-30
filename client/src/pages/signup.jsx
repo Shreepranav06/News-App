@@ -15,7 +15,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.REACT_APP_BACKEND_URL}/api/register`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/register`,
         {
           username,
           password,

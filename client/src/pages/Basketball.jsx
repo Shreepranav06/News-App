@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const BasketballPage = () => {
   const { category } = useParams();

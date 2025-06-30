@@ -15,7 +15,7 @@ const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const FOOTBALL_API_KEY = "96e9d5735b94ad4230deb3f007105673";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
 const FOOTBALL_BASE_URL = "https://v3.football.api-sports.io";
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URLL;
 
 
 // Stadium backgrounds for League Standings (mapped to league IDs)

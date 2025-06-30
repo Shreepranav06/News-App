@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Lottie from "react-lottie-player";
 import animationData from "../assets/Cricket_bat.json";
 
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
 const RAPIDAPI_KEY = "a1b5987cffmsh1bab8f14268620bp10db03jsn5a8135a79eba";
