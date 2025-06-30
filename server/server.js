@@ -149,6 +149,20 @@ app.post('/api/interact/comment', async (req, res) => {
   }
 });
 
+const axios = require("axios");
+
+app.get("/api/breaking-news", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://newsapi.org/v2/top-headlines?category=general&apiKey=71e5a2b091fb447d8fd1fea38a3a5bea"
+    );
+    res.status(200).json(response.data);
+  } catch (err) {
+    console.error("NewsAPI proxy error:", err.message);
+    res.status(500).json({ message: "Failed to fetch breaking news" });
+  }
+});
+
 // Get User Interactions Route (to fetch votes and comments for display)
 app.get('/api/interact/:username', async (req, res) => {
   const { username } = req.params;

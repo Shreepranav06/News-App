@@ -8,9 +8,10 @@ const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 
 const apiConfig = {
   Breaking: {
-    url: `https://newsapi.org/v2/top-headlines?category=general&apiKey=71e5a2b091fb447d8fd1fea38a3a5bea`,
+    url: `${BACKEND_URL}/api/breaking-news`, // fetch from your backend
     extractArticles: (data) => data.articles,
   },
+  
   India: {
     url: `https://newsdata.io/api/1/news?country=in&category=politics&apikey=pub_7529455eb791a7aa5ed73d7c18d8b653bea67`,
     extractArticles: (data) => data.results,
