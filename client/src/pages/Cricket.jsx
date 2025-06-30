@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Lottie from "react-lottie-player";
 import animationData from "../assets/Cricket_bat.json";
 
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
 const RAPIDAPI_KEY = "a1b5987cffmsh1bab8f14268620bp10db03jsn5a8135a79eba";
@@ -79,7 +80,7 @@ const CricketPage = () => {
   const fetchUserInteractions = async (newsArticles) => {
     if (!username) return;
     try {
-      const response = await axios.get(`http://localhost:5000/api/interact/${username}`);
+      const response = await axios.get(`${BACKEND_URL}/api/interact/${username}`);
       const interactions = response.data.interactions;
 
       const votesData = {};
@@ -130,7 +131,7 @@ const CricketPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/interact/vote", {
+      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -156,7 +157,7 @@ const CricketPage = () => {
     if (!comment) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/interact/comment", {
+      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
         username,
         newsUrl,
         comment,

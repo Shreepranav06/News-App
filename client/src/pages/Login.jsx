@@ -14,10 +14,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.REACT_APP_BACKEND_URL}/api/login`,
+        {
+          username,
+          password,
+        }
+      );
+      
 
       if (response.status === 200) {
         setMessage("Login successful! Redirecting...");

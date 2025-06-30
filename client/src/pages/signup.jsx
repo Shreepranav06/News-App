@@ -14,10 +14,14 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/register", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.REACT_APP_BACKEND_URL}/api/register`,
+        {
+          username,
+          password,
+        }
+      );
+      
 
       console.log("Signup response:", response.data);
       setMessage("Signup successful! Redirecting to login...");

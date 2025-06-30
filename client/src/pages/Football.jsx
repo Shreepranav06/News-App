@@ -15,6 +15,8 @@ const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const FOOTBALL_API_KEY = "96e9d5735b94ad4230deb3f007105673";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
 const FOOTBALL_BASE_URL = "https://v3.football.api-sports.io";
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
+
 
 // Stadium backgrounds for League Standings (mapped to league IDs)
 const stadiumBackgrounds = {
@@ -80,7 +82,7 @@ const FootballPage = () => {
     const fetchUserInteractions = async () => {
       if (!loggedInUser) return;
       try {
-        const response = await axios.get(`http://localhost:5000/api/interact/${loggedInUser}`);
+        const response = await axios.get(`${BACKEND_URL}/api/interact/${loggedInUser}`);
         const interactions = response.data.interactions;
 
         // Map interactions to votes and comments state
@@ -112,7 +114,7 @@ const FootballPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/interact/vote", {
+      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -135,7 +137,7 @@ const FootballPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/interact/comment", {
+      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
         username,
         newsUrl,
         comment,
