@@ -15,6 +15,8 @@ app.use(cors({
   origin: "https://frontend-service-5gzj.onrender.com",
   credentials: true
 }));
+
+app.options("*", cors());
 app.use(express.json());
 
 // MongoDB Connection
