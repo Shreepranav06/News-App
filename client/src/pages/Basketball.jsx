@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import { useParams } from "react-router-dom";
 
 const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
@@ -30,7 +30,7 @@ const BasketballPage = () => {
   const fetchUserInteractions = async (newsArticles) => {
     if (!username) return;
     try {
-      const response = await axios.get(`${BACKEND_URL}/api/interact/${username}`);
+      const response = await axios.get(`/api/interact/${username}`);
       const interactions = response.data.interactions;
 
       // Map interactions to votes and comments state
@@ -78,7 +78,7 @@ const BasketballPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
+      const response = await axios.post(`/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -104,7 +104,7 @@ const BasketballPage = () => {
     if (!comment) return; // Don't submit empty comments
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
+      const response = await axios.post(`/api/interact/comment`, {
         username,
         newsUrl,
         comment,

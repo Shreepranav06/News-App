@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Backendaxios from "../api/axios";
 import { useParams } from "react-router-dom";
 import { normalizeUrl } from "../utils/normalizeURL";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
 
 
 const apiConfig = {
@@ -68,7 +68,7 @@ const PoliticsPage = () => {
   const fetchUserInteractions = async (newsList) => {
     if (!username) return;
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/interact/${username}`);
+      const response = await Backendaxios.get(`/api/interact/${username}`);
 
       const interactions = response.data.interactions || [];
 
@@ -97,7 +97,7 @@ const PoliticsPage = () => {
     const article = articles[index];
     const articleUrl = normalizeUrl(articles[index].url);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/interact/vote`, {
+      const res = await Backendaxios.post(`/api/interact/vote`, {
         username,
         newsUrl: articleUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -120,7 +120,7 @@ const PoliticsPage = () => {
     if (!comment) return;
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/interact/comment`, {
+      const res = await Backendaxios.post(`/api/interact/comment`, {
 
           username,
           newsUrl: normalizeUrl(articles[index].url),

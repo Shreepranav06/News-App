@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Backendaxios from "../api/axios";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
@@ -82,7 +83,7 @@ const FootballPage = () => {
     const fetchUserInteractions = async () => {
       if (!loggedInUser) return;
       try {
-        const response = await axios.get(`${BACKEND_URL}/api/interact/${loggedInUser}`);
+        const response = await Backendaxios.get(`/api/interact/${loggedInUser}`);
         const interactions = response.data.interactions;
 
         // Map interactions to votes and comments state
@@ -114,7 +115,7 @@ const FootballPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
+      const response = await Backendaxios.post(`/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -137,7 +138,7 @@ const FootballPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
+      const response = await Backendaxios.post(`/api/interact/comment`, {
         username,
         newsUrl,
         comment,

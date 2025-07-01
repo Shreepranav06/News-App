@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Backendaxios from "../api/axios";
 import { useParams } from "react-router-dom";
 import Lottie from "react-lottie-player";
 import animationData from "../assets/Cricket_bat.json";
@@ -80,7 +81,7 @@ const CricketPage = () => {
   const fetchUserInteractions = async (newsArticles) => {
     if (!username) return;
     try {
-      const response = await axios.get(`${BACKEND_URL}/api/interact/${username}`);
+      const response = await Backendaxios.get(`/api/interact/${username}`);
       const interactions = response.data.interactions;
 
       const votesData = {};
@@ -131,7 +132,7 @@ const CricketPage = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
+      const response = await Backendaxios.post(`/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -157,7 +158,7 @@ const CricketPage = () => {
     if (!comment) return;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
+      const response = await Backendaxios.post(`/api/interact/comment`, {
         username,
         newsUrl,
         comment,

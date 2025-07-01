@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "../assets/news_login.json"; // You can use the same Lottie animation
-import axios from "axios";
+import axios from "../api/axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -14,8 +14,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/register`,
+      const response = await axios.post("/api/register",
         {
           username,
           password,

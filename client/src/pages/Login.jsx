@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import animationData from "../assets/news_login.json";
-import axios from "axios";
+import axios from "../api/axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,13 +14,10 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post("/api/login", {
+        username,
+        password,
+      });
       
 
       if (response.status === 200) {

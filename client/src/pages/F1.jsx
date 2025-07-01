@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Backendaxios from "../api/axios";
 
 const NEWS_API_KEY = "249a2a2bee1f4a01b5fe8f7d2858e25b";
 const NEWS_BASE_URL = "https://newsapi.org/v2/everything";
@@ -28,7 +29,7 @@ const F1Page = () => {
   const fetchUserInteractions = async (newsArticles) => {
     if (!username) return;
     try {
-      const response = await axios.get(`${BACKEND_URL}/api/interact/${username}`);
+      const response = await Backendaxios.get(`/api/interact/${username}`);
       const interactions = response.data.interactions;
 
       // Map interactions to votes and comments state
@@ -76,7 +77,7 @@ const F1Page = () => {
     const newsUrl = article.url;
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/vote`, {
+      const response = await Backendaxios.post(`/api/interact/vote`, {
         username,
         newsUrl,
         type: type === "up" ? "upvote" : "downvote",
@@ -102,7 +103,7 @@ const F1Page = () => {
     if (!comment) return; // Don't submit empty comments
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/interact/comment`, {
+      const response = await Backendaxios.post(`/api/interact/comment`, {
         username,
         newsUrl,
         comment,
